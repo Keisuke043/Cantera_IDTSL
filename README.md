@@ -1,1 +1,1 @@
-# Cantera_IDTSL
+# Cantera code to calculate IDT/SL
