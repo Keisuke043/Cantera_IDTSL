@@ -48,23 +48,25 @@ def read_IDT_hdf(read_file_hdf):
 
 if __name__ == '__main__':
 
-    save_dir = 'Results_IDT'
-
     phi = 0.8
     phi = 1.0
     phi = 1.4
     phi = 2.0
+
+    save_dir = 'Results_IDT'
     df_IDT = read_IDT_hdf('Results_IDT/Results_IDT_Lu_phi{}.h5'.format(phi))
 
     fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(10,7))
     ax2 = ax.twiny()
 
+    clist = ['mediumvioletred', 'steelblue', 'goldenrod', 'seagreen']
     plist = [1.0, 5.0, 10.0, 30.0]
     for i, p in enumerate(plist):
+        c = clist[i]
         df_IDT1 = df_IDT[df_IDT['T']<1200.0]
         df_IDT2 = df_IDT
-        df_IDT1.plot(kind='line', ax=ax, x='T_inv', y='tau1_p{}'.format(p), lw=2, c='r', ls='--', label='')
-        df_IDT2.plot(kind='line', ax=ax, x='T_inv', y='tau2_p{}'.format(p), lw=2, c='r', ls='-',  label='{} atm'.format(p))
+        df_IDT1.plot(kind='line', ax=ax, x='T_inv', y='tau1_p{}'.format(p), lw=3, c=c, ls='--', label='')
+        df_IDT2.plot(kind='line', ax=ax, x='T_inv', y='tau2_p{}'.format(p), lw=3, c=c, ls='-',  label='{} atm'.format(p))
 
     ax.legend(loc='lower right', fontsize=16)
     ax.set_ylim(1.0e-5, 2.0)

@@ -3,7 +3,9 @@ import numpy as np
 from mpi4py import MPI
 import h5py
 import subprocess
+import matplotlib.pyplot as plt
 import cantera as ct
+
 
 
 fuel = 'nc7h16'
@@ -13,21 +15,36 @@ chemPath_cti = 'KineticModels/Chem/nHeptane/Lu/sk88/chem.yaml'
 
 min_temp    = 500.0
 max_temp    = 2000.0
-del_temp    = 100.0
+del_temp    = 50.0
 min_presAtm = 1.0
 max_presAtm = 1.0
 del_presAtm = 1.0
 
 equivalence_ratio = 2.0
 equivalence_ratio = 1.4
-equivalence_ratio = 0.8
-equivalence_ratio = 1.0
+# equivalence_ratio = 0.8
+# equivalence_ratio = 0.7
+# equivalence_ratio = 0.9
+# equivalence_ratio = 1.0
+# equivalence_ratio = 0.6
+# equivalence_ratio = 0.5
+# equivalence_ratio = 1.4
+# equivalence_ratio = 1.3
+# equivalence_ratio = 1.2
+# equivalence_ratio = 1.1
+# equivalence_ratio = 1.5
+equivalence_ratio = 2.0
+equivalence_ratio = 1.6
+equivalence_ratio = 1.7
+equivalence_ratio = 1.8
+equivalence_ratio = 1.9
+print(equivalence_ratio)
 
 endTime_Max = 5.0
 
 savedir = 'Results_IDT'
 flag_save_history = True
-savedir = 'Results_IDT_timeHist'
+savedir = 'Results_timeHist_IDT'
 subprocess.call(['mkdir','-p', savedir])
 
 if flag_save_history:
@@ -36,7 +53,7 @@ if flag_save_history:
 
 array_temp    = np.arange(min_temp, max_temp+del_temp/10.0, del_temp)
 array_presAtm = np.arange(min_presAtm, max_presAtm+del_presAtm/10.0, del_presAtm)
-array_presAtm = np.array([1.0, 5.0, 10.0, 20.0, 30.0, 40.0, 50.0])
+# array_presAtm = np.array([1.0, 5.0, 10.0, 20.0, 30.0, 40.0, 50.0])
 array_pres    = ct.one_atm*array_presAtm
 
 # Set case number in each process
